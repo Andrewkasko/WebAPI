@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPI.Interface;
 using WebAPI.Models;
 using WebAPI.Repository;
 
@@ -13,7 +14,13 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CommandsController : ControllerBase
     {
-        private readonly CommanderRepository _commandRepository = new CommanderRepository();
+        private readonly ICommanderRepository _commandRepository = new CommanderRepository();
+
+        public CommandsController(ICommanderRepository commandRepository)
+        {
+            _commandRepository = commandRepository;
+        }
+
 
         //GET api/commands
         [HttpGet]
